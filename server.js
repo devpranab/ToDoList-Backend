@@ -5,6 +5,9 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+// CRUD method import
+const {getTodos, createTodo, updateTodo, deleteTodo} = require('./controllers/todoController');
+
 // App config
 const app = express();
 
@@ -28,7 +31,14 @@ mongoose.connect(connectionURL)
 });
 
 // API endpoints
+//get todos list
+app.get("/todos", getTodos);
 
+//create a new todo
+app.post("/todos", createTodo);
 
+//update a todo
+app.put("/todos/:id", updateTodo);
 
-//userName: ToDoList, userId: userToDo, password: userToDo054
+//delete a todo
+app.delete("/todos/:id", deleteTodo);
